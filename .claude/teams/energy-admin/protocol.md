@@ -31,7 +31,10 @@
 
 詳見 `plan/implementation-roadmap.md`。
 
-當前狀態：**Phase 0（專案設定）— 進行中**
+當前狀態：**Phase 0-8 完成，已 merge 至 main**
+
+## 模型使用標準
+本次僅限使用 sonnet / haiku 模型進行
 
 ## 驗收標準
 

@@ -50,6 +50,7 @@ src/
 
 多人協作時使用 `.claude/agents/` 中定義的 agent。
 Team protocol 見 `.claude/teams/energy-admin/protocol.md`。
+需要確保設備 CPU / Memory 閒置 >=10% 定期檢查無效進程
 
 ## 重要文件
 
