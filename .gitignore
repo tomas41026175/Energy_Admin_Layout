@@ -9,6 +9,9 @@ Energy_Admin/
 .DS_Store
 Thumbs.db
 
+# Worktrees
+.worktrees/
+
 # Editor
 .vscode/
 .idea/
