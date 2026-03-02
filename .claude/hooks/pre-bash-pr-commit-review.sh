@@ -36,7 +36,7 @@ done <<< "$COMMIT_MESSAGES"
 
 # ── Rule 2: Commit type 與 branch type 不符 ────────────────────────────────
 # 允許的輔助 type（任何 branch 都可帶）
-SECONDARY_OK="fix test docs style"
+SECONDARY_OK="fix test docs style chore"
 BRANCH_TYPE=$(echo "$CURRENT_BRANCH" | sed 's|/.*||')
 
 if echo "feat fix chore refactor perf build ci" | grep -qw "$BRANCH_TYPE"; then
