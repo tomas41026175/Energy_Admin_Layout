@@ -1,0 +1,98 @@
+name: PR Review Notify
+
+on:
+  pull_request:
+    types: [opened, ready_for_review]
+
+permissions:
+  pull-requests: write
+  issues: write
+
+jobs:
+  notify:
+    name: Post Review Checklist
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Extract Phase from PR title or branch
+        id: phase
+        run: |
+          BRANCH="${{ github.head_ref }}"
+          TITLE="${{ github.event.pull_request.title }}"
+          echo "branch=$BRANCH" >> $GITHUB_OUTPUT
+          echo "title=$TITLE" >> $GITHUB_OUTPUT
+
+      - name: Post review checklist comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const branch = '${{ steps.phase.outputs.branch }}';
+            const title = '${{ steps.phase.outputs.title }}';
+
+            const body = `## Code Review Checklist
+
+            > PR: **${title}** (\`${branch}\`)
+
+            ### 驗收標準
+
+            - [ ] 功能符合 \`plan/implementation-roadmap.md\` 對應 Phase 的驗收標準
+            - [ ] TypeScript strict 無錯誤
+            - [ ] ESLint 無錯誤
+            - [ ] 測試覆蓋率 ≥ 70%
+            - [ ] 所有測試通過
+
+            ### 程式碼品質
+
+            - [ ] 無 \`any\` 型別（除非有必要說明）
+            - [ ] 無 \`console.log\`
+            - [ ] \`useEffect\` 使用有說明理由（優先使用 TanStack Query）
+            - [ ] 元件職責單一，不超過 100 行
+            - [ ] API 呼叫透過 domain API layer（非直接 axios）
+
+            ### 設計稿對照（若有 UI 變更）
+
+            - [ ] 顏色使用設計規格（primary: \`#E42313\`）
+            - [ ] 字型使用規格（Space Grotesk / Inter）
+            - [ ] RWD：桌面 1440px / 平板 768px / 手機 375px
+            - [ ] Spacing / Shadow 符合設計規格
+
+            ### 架構
+
+            - [ ] Domain 邊界清晰（pages/ 保持薄層）
+            - [ ] Token 策略正確（Access Token in-memory / Refresh Token localStorage）
+            - [ ] 新元件在正確目錄（\`domains/\` / \`shared/\` / \`pages/\`）
+
+            ---
+
+            **參考文件**
+            - [實作路線圖](../blob/main/plan/implementation-roadmap.md)
+            - [設計規格](../blob/main/plan/design-spec.md)
+            - [React Vite 規範](../blob/main/.claude/rules/react-vite.md)
+            - [測試規範](../blob/main/.claude/rules/testing.md)
+            `;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: body
+            });
+
+      - name: Add needs-review label
+        uses: actions/github-script@v7
+        with:
+          script: |
+            try {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                labels: ['needs-review']
+              });
+            } catch (e) {
+              // label 不存在時不中斷
+              console.log('Label not found, skipping:', e.message);
+            }
