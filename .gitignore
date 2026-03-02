@@ -1,0 +1,15 @@
+# ===========================
+# Layer 2: Project Repo
+# ===========================
+# Energy_Admin is a separate git repo, managed by setup.sh
+Energy_Admin/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
