@@ -33,6 +33,9 @@
 
 當前狀態：**Phase 0（專案設定）— 進行中**
 
+## 模型使用標準
+本次僅限使用 sonnnet / haiku 模型進行
+
 ## 驗收標準
 
 每個 Phase 的驗收標準見 `plan/implementation-roadmap.md`。
