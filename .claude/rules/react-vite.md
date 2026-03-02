@@ -59,6 +59,40 @@ useEffect(() => { axios.get('/users').then(setUsers) }, []);
 - 禁止 `any`（用 `unknown` + type guard）
 - API 回應型別用 Zod schema 推導（`z.infer<typeof Schema>`）
 
+## useEffect 使用原則（重要）
+
+**原則：盡可能避免 useEffect。** 大多數情況都有更好的替代方案。
+
+| 情境 | 替代方案 |
+|------|---------|
+| 資料獲取 | TanStack Query `useQuery` |
+| 提交後更新 | `useMutation` 的 `onSuccess` |
+| URL 同步狀態 | `useSearchParams` |
+| 計算衍生值 | `useMemo` 或 render 中直接計算 |
+| 表單初始值 | `useForm` 的 `defaultValues` |
+
+```tsx
+// ❌ 禁止
+useEffect(() => { fetchUsers().then(setUsers); }, [page]);
+
+// ✅ 正確
+const { data } = useUsers({ page });
+```
+
+若確實需要 useEffect，必須留下說明註解。
+
+## 元件設計
+
+- 超過 100 行考慮拆分
+- Props drilling 超過 2 層改用 Context
+- 列表 item 元件獨立抽取
+
+## 設計稿對照
+
+- 實作前先確認設計稿（`Energy_Admin/design-v1.pen`）
+- 像素級對照 spacing / color / typography
+- 有疑慮主動提出，不自行猜測
+
 ## 效能
 
 - 路由層級使用 `React.lazy` + `Suspense`

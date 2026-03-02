@@ -30,6 +30,16 @@ src/
 └── pages/      # 路由層級元件（薄層，組合 domain）
 ```
 
+## 強制規則（不可例外）
+
+1. **禁止直接修改 main** — 任何實作必須先切 feature branch
+2. **PR 驗收標準** — 必須完全符合 `plan/implementation-roadmap.md` 的驗收標準，無例外
+3. **並行任務用 worktree** — 多個任務並行時，每個任務一個 `git worktree`
+4. **TDD 開發** — 先寫測試（RED）→ 再實作（GREEN）→ 重構（REFACTOR）
+5. **禁用 useEffect（原則上）** — 資料獲取用 TanStack Query，副作用用 Query 的 callbacks
+6. **實作必須符合設計稿** — 有疑慮時主動提出，不自行猜測設計意圖
+7. **執行前必須有對應 Skill** — 使用 `.claude/skills/` 中的 skill 作為執行依據
+
 ## 規範
 
 - @.claude/rules/react-vite.md

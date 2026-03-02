@@ -2,6 +2,7 @@
 # Layer 2: Project Repo
 # ===========================
 # Energy_Admin is a separate git repo, managed by setup.sh
+# Claude config (CLAUDE.md, .claude/) belongs ONLY in Layer 1 (workspace)
 Energy_Admin/
 
 # OS
