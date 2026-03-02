@@ -1,0 +1,37 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /Users/liangxuanzhang/work/Energy_Admin_Layout/.claude/hooks/pre-write-quality.sh"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /Users/liangxuanzhang/work/Energy_Admin_Layout/.claude/hooks/pre-bash-branch-guard.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /Users/liangxuanzhang/work/Energy_Admin_Layout/.claude/hooks/stop-quality-reminder.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
