@@ -57,6 +57,31 @@
 
 ---
 
+### 📋 任務：設定環境變數
+
+**驗收標準**：
+- [ ] 建立 `.env.local`，包含：
+  ```
+  VITE_API_BASE_URL=https://lbbj5pioquwxdexqmcnwaxrpce0lcoqx.lambda-url.ap-southeast-1.on.aws
+  ```
+- [ ] 建立 `.env.example`（供其他開發者參考，不含實際值）：
+  ```
+  VITE_API_BASE_URL=
+  ```
+- [ ] `.gitignore` 包含 `.env.local`（防止敏感資料進 git）
+- [ ] Vite dev server 可讀取 `import.meta.env.VITE_API_BASE_URL`
+
+**相關文件**：
+- [Vite - Env Variables and Modes](https://vitejs.dev/guide/env-and-mode.html)
+
+**所需技能**：
+- 環境變數基礎概念
+- Vite 環境變數命名規則（必須 `VITE_` 前綴）
+
+**預估時間**: 10 分鐘
+
+---
+
 ### 📋 任務：安裝核心依賴
 
 **驗收標準**：
