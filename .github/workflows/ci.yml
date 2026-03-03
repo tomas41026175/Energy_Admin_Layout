@@ -17,6 +17,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Clone Energy_Admin project
+        run: git clone --depth=1 https://github.com/tomas41026175/Energy_Admin.git Energy_Admin
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
