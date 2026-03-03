@@ -9,7 +9,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash /Users/liangxuanzhang/work/Energy_Admin_Layout/.claude/hooks/pre-write-quality.sh"
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/pre-write-quality.sh\""
           }
         ]
       }
@@ -20,11 +20,11 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash /Users/liangxuanzhang/work/Energy_Admin_Layout/.claude/hooks/pre-bash-branch-guard.sh"
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/pre-bash-branch-guard.sh\""
           },
           {
             "type": "command",
-            "command": "bash /Users/liangxuanzhang/work/Energy_Admin_Layout/.claude/hooks/pre-bash-pr-commit-review.sh"
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/pre-bash-pr-commit-review.sh\""
           }
         ]
       }
@@ -35,7 +35,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash /Users/liangxuanzhang/work/Energy_Admin_Layout/.claude/hooks/stop-quality-reminder.sh"
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/stop-quality-reminder.sh\""
           }
         ]
       }
