@@ -455,6 +455,43 @@ Phase 0 → Phase 1 → Phase 2 → Phase 3 → Phase 4 → Phase 5
 
 ---
 
+### Phase UX: UX 深度優化（12 項）
+
+**狀態**: ✅ 完成（2026-03-03，branch: feat/ux-improvements）
+
+> 基於 API 限制（僅支援 GET /api/users?page&limit&name&email&status），
+> 跳過需要 POST/PATCH 的 3 項（狀態切換、新增使用者、Dashboard 時間篩選），
+> 實作以下 12 項 UX 優化。
+
+#### UX.1 搜尋改進
+- [x] 搜尋清除按鈕（searchInput 非空時顯示 ✕）
+- [x] 搜尋結果數量提示（「共 N 筆結果」）
+- [x] 鍵盤快捷鍵：`/` 聚焦搜尋框，`Esc` 清除搜尋
+
+#### UX.2 URL Query Params 同步
+- [x] `useSearchParams` 作為唯一狀態來源（q / status / page / limit）
+- [x] 篩選條件可分享（重整後保留）
+- [x] 每頁筆數選擇（PAGE_SIZE_OPTIONS: 10 / 25 / 50）
+
+#### UX.3 表格增強
+- [x] isPlaceholderData Spinner（翻頁時右上角 loading 指示器）
+- [x] 差異化 Empty State（有搜尋條件 vs 無資料）
+- [x] 欄位排序 client-side（ID / 姓名 / 建立日期，含 ▲▼ 指示器）
+
+#### UX.4 效能優化
+- [x] 分頁預取（useEffect 預取下一頁至 QueryClient cache）
+
+#### UX.5 Layout 改進
+- [x] Sidebar 收合（desktop: w-64 ↔ w-16，icon-only + tooltip）
+- [x] 離線 Banner（useNetworkStatus，頂部提示列）
+
+#### UX.6 資料視覺化
+- [x] Dashboard 圓餅圖（recharts PieChart，啟用/停用比例）
+
+**測試覆蓋**：265 tests pass（25 files），新增 sort / spinner / offline / collapse / pie chart 測試
+
+---
+
 ### Phase 9: 進階功能擴充（可選）
 
 **狀態**: ⏳ 未來擴充
