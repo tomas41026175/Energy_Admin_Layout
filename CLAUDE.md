@@ -58,3 +58,14 @@ Team protocol 見 `.claude/teams/energy-admin/protocol.md`。
 - 技術決策: `Energy_Admin/docs/02-technical-decisions.md`
 - API 文件: `Energy_Admin/docs/04-api-documentation.md`
 - 測試策略: `Energy_Admin/docs/05-testing-strategy.md`
+
+## CR 常見錯誤 Pattern（自動攔截）
+
+| # | Pattern | 攔截方式 |
+|---|---------|---------|
+| P1 | SVG 圖示重複定義（應提取到 `shared/icons/`） | 搜尋多個 `const \w+Icon = \(\) =>` |
+| P2 | 魔法數字未提取（`2800`、`50` 等硬編碼） | 確認是否有對應 `constants.ts` 命名常數 |
+| P3 | 列表元件缺 `React.memo`（`.map()` 內元件） | 確認渲染於 map 的元件是否有 memo |
+| P4 | API 層未做 Zod runtime 驗證 | 確認 API 函式有 `zodSchema.parse()` |
+| P5 | MSW mock 回應與型別定義不一致 | 比對 handlers.ts 與 auth.types.ts/users.types.ts |
+| P6 | Refresh token 存 localStorage（已知風險） | 留存說明，後端配合時改 HttpOnly Cookie |
