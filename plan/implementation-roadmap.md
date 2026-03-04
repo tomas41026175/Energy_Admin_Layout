@@ -15,12 +15,12 @@
 ## 🎯 核心目標
 
 - ✅ 完整的文件系統（已完成）
-- ⏳ 實作認證與 Token 管理機制
-- ⏳ 實作使用者列表功能
-- ⏳ **設定 CI/CD 流程並部署到 Vercel（必須）**
-- ⏳ 提升使用者體驗（Loading States、Error Handling、A11y）
-- ⏳ 建立測試體系
-- ⏳ 確保專案完整度（Security、Observability、Performance）
+- ✅ 實作認證與 Token 管理機制
+- ✅ 實作使用者列表功能
+- ✅ **設定 CI/CD 流程並部署到 Vercel（已完成）**
+- ✅ 提升使用者體驗（Loading States、Error Handling、A11y）
+- 🟡 建立測試體系（覆蓋率 ~68%，目標 80%）
+- ⏳ 確保專案完整度（Observability、進階效能優化）
 
 ---
 
@@ -47,7 +47,7 @@ Phase 0 → Phase 1 → Phase 2 → Phase 3 → Phase 4 → Phase 5
 
 ### Phase 0: 專案設定
 
-**狀態**: 🟡 進行中
+**狀態**: ✅ 完成
 
 #### 0.1 專案初始化
 - [ ] 使用 Vite 建立專案
@@ -80,7 +80,7 @@ Phase 0 → Phase 1 → Phase 2 → Phase 3 → Phase 4 → Phase 5
 
 ### Phase 1: 型別系統建立
 
-**狀態**: ⏳ 待開始
+**狀態**: ✅ 完成
 
 #### 1.1 全域型別定義
 - [ ] 建立 `types/global.d.ts`
@@ -108,7 +108,7 @@ Phase 0 → Phase 1 → Phase 2 → Phase 3 → Phase 4 → Phase 5
 
 ### Phase 2: API 客戶端建立
 
-**狀態**: ⏳ 待開始
+**狀態**: ✅ 完成
 
 #### 2.1 基礎 API 客戶端
 - [ ] 建立 Axios 實例 (`shared/api/client.ts`)
@@ -148,7 +148,7 @@ Phase 0 → Phase 1 → Phase 2 → Phase 3 → Phase 4 → Phase 5
 
 ### Phase 3: 認證模組實作
 
-**狀態**: ⏳ 待開始
+**狀態**: ✅ 完成
 
 #### 3.1 認證型別與 Schema
 - [ ] 建立 `auth/auth.types.ts`
@@ -186,7 +186,7 @@ Phase 0 → Phase 1 → Phase 2 → Phase 3 → Phase 4 → Phase 5
 
 ### Phase 4: 使用者列表功能
 
-**狀態**: ⏳ 待開始
+**狀態**: ✅ 完成
 
 #### 4.1 使用者型別與 Schema
 - [ ] 建立 `domains/users/users.types.ts`
@@ -225,7 +225,7 @@ Phase 0 → Phase 1 → Phase 2 → Phase 3 → Phase 4 → Phase 5
 
 ### Phase 5: 頁面與路由
 
-**狀態**: ⏳ 待開始
+**狀態**: ✅ 完成
 
 #### 5.1 登入頁面（Form Experience UX）
 - [ ] 建立 `pages/login.tsx`
@@ -264,7 +264,7 @@ Phase 0 → Phase 1 → Phase 2 → Phase 3 → Phase 4 → Phase 5
 
 ### Phase 6: UI 優化
 
-**狀態**: ⏳ 待開始
+**狀態**: ✅ 完成
 
 #### 6.1 共用 UI 元件
 - [ ] 建立 `shared/ui/Button.tsx`（含 Loading 狀態）
@@ -324,7 +324,7 @@ Phase 0 → Phase 1 → Phase 2 → Phase 3 → Phase 4 → Phase 5
 
 ### Phase 7: 測試完善與效能優化
 
-**狀態**: ⏳ 待開始
+**狀態**: 🟡 進行中（覆蓋率 ~68%，目標 80%）
 
 #### 7.1 單元測試補完
 - [ ] 確保所有 API 函式有測試
@@ -373,7 +373,7 @@ Phase 0 → Phase 1 → Phase 2 → Phase 3 → Phase 4 → Phase 5
 
 ### Phase 8: CI/CD 與 Vercel 部署（必須完成）
 
-**狀態**: ⏳ 待開始
+**狀態**: ✅ 完成（2026-03-04）
 
 > **重要**: 此階段為生產部署必要項目，必須完成以確保專案可透過 Vercel 交付。
 
@@ -494,7 +494,7 @@ Phase 0 → Phase 1 → Phase 2 → Phase 3 → Phase 4 → Phase 5
 
 ### Phase 9: 進階功能擴充（可選）
 
-**狀態**: ⏳ 未來擴充
+**狀態**: ⏳ 未來擴充（核心功能已交付，此 Phase 為選配）
 
 > 此階段為可選功能，可在核心功能完成後根據需求選擇性實作
 
@@ -544,6 +544,46 @@ Phase 0 → Phase 1 → Phase 2 → Phase 3 → Phase 4 → Phase 5
 
 ---
 
+### Phase TD: 技術債清償（2026-03-04 登錄）
+
+**狀態**: ⏳ 待處理
+
+> 根據 2026-03-04 程式碼品質審查發現，登錄以下技術債，依優先級排序。
+
+#### TD-P0：立即修復
+
+- [ ] **拆分 `UsersTable.tsx`**（359 行 → 目標各 <100 行）
+  - [ ] `UsersTable.tsx`（容器，<100 行）
+  - [ ] `UsersTableRow.tsx`（行元件）
+  - [ ] `UsersTableMobile.tsx`（行動版卡片）
+  - [ ] `UsersTablePagination.tsx`（分頁器）
+  - [ ] `SortableHeader.tsx`（可排序欄位）
+- [ ] **補 `interceptor.ts` 單元測試**（Token 刷新、佇列、失敗回退）
+- [ ] **修正 `StatusBadge` 跨層耦合**（改為泛型介面，移除對 `users.types` 的直接依賴）
+
+#### TD-P1：本週處理
+
+- [ ] **拆分 `pages/users.tsx`**（242 行）→ 抽出 `SearchBar.tsx`、`FilterControls.tsx`
+- [ ] **拆分 `pages/dashboard.tsx`**（176 行）→ 抽出 `StatCard.tsx`、`RecentUserRow.tsx`
+- [ ] **拆分 `app/layout/Sidebar.tsx`**（185 行）→ 抽出各 icon 元件
+
+#### TD-P2：長期優化
+
+- [ ] **補齊測試覆蓋率至 80%**（目前 ~68%）
+  - [ ] `shared/api/interceptor.ts`
+  - [ ] `app/router.tsx`
+  - [ ] `app/providers.tsx`
+  - [ ] `shared/hooks/useToast.ts`
+- [ ] **修正 import 順序**（外部套件 → 內部 alias → 相對路徑）
+- [ ] **評估 `interceptor.ts` 競態條件**（`isRefreshing` + `failedQueue` 全域狀態在極端並行情境下的風險）
+
+**交付物**:
+- 各元件檔案行數符合規範（元件 <100 行，函式 <50 行）
+- 測試覆蓋率 ≥ 80%
+- `shared/` 無 domain 依賴
+
+---
+
 
 ## 🎯 里程碑
 
@@ -565,19 +605,19 @@ Phase 0 → Phase 1 → Phase 2 → Phase 3 → Phase 4 → Phase 5
 - ✅ 使用者回饋機制（Toast、Confirm）
 
 ### Milestone 4: 生產就緒（Phase 7-8）
-- ✅ 測試完善（覆蓋率 70-80%）
-- ✅ 效能優化（Lighthouse Green）
-- ✅ **CI/CD 部署（必須 - GitHub Actions + Vercel）**
+- 🟡 測試完善（覆蓋率 ~68%，目標 80%）
+- ⏳ 效能優化（Lighthouse 尚未測量）
+- ✅ **CI/CD 部署（GitHub Actions + Vercel）**
 - ✅ **Production 部署成功並可訪問**
 - ✅ Security Headers 設定
-- ✅ 可觀測性（可選 - 錯誤追蹤）
+- ⏳ 可觀測性（可選 - 錯誤追蹤，尚未實作）
 - ✅ 文件完整（含部署說明）
 
 ### Milestone 5: 進階功能（Phase 9 - 可選）
-- ✅ 進階使用者功能（搜尋、篩選）
-- ✅ 權限管理（RBAC）
-- ✅ 深色模式
-- ✅ 國際化（i18n）
+- ⏳ 進階使用者功能（搜尋、篩選）
+- ⏳ 權限管理（RBAC）
+- ⏳ 深色模式
+- ⏳ 國際化（i18n）
 
 ---
 
@@ -1029,6 +1069,6 @@ jobs:
 ---
 
 **建立日期**: 2026-03-03
-**最後更新**: 2026-03-03
+**最後更新**: 2026-03-04
 **負責人**: Development Team
-**版本**: v2.1 - 整合 Vercel CI/CD 部署流程（Phase 8 提升為必須完成項目）
+**版本**: v2.2 - 更新各 Phase 實際完成狀態（Phase 0-6、Phase UX、Phase 8 已完成；Phase 7 進行中）
